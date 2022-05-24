@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="assets/css/style.css"/>
+        <title>Coding Quiz</title>
+    </head>
+    <body>
+        <div id="container">
+            <div class="row">
+                <div class="col-6" id="View_Highscores">View HighScores</div>
+                <div class="col-6">Time left: <span id="timer-count"></span></div>
+            </div>
+          </div>
+
+        <main>
+          <div class ="col-6 align-items-center" id="startscreen">
+            <h2>Welcome to the quiz game!</h2>
+            <h4>Players will have 60 seconds to answer the questions. For every question that is answered incorrectly, five seconds will be subtracted from the total time left. Click start to begin.</h4>
+            <button class="btn btn-secondary btn-lg col-3" id="start-button">Start</button>
+          </div>
+
+          <div class="col-6 align-items-center" id="quiz-container">
+            <div class="question-container"></div>
+              <h2 id="question"></h2>
+              <ol id="choices"></ol>
+            </div>
+            <div class="" id="display-results"></div>
+          </div>
+
+          <div class="col-6 align-items-center" id="endscreen"></div>
+
+          <div id="highscore"></div>
+        </main>
+    
+    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </body>
+
+</html>
