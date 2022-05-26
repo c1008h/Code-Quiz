@@ -1,11 +1,8 @@
 var timerElement = document.querySelector('#timer-count');
-var scoreCounter = [] // Tracks points (out of five points)
 var timer;
 var secondsLeft = 60; // Seconds Left on timer
-var score = 0;
 var storeInitials = []; // For user to enter initials
 var myQuestions = ["Commonly used data types DO NOT include: ", "The condition in an if / else statement is enclosed within ____.", "Arrays in JavaScript can be used to store ____.", "String values must be enclosed within ____ when being assigned to variables.", "A very useful tool used during development and debugging for printing content to the debugger is: "];
-
 var myAnswers = [["strings", "booleans", "alerts", "numbers"],
                 ["quotes","curly brackets","parenthesis","square brackets"],
                 ["number and strings", "other arrays", "booleans", "all of the above"],
@@ -66,17 +63,12 @@ function startGame () {
 }
 function correctAnswer(){
     result.textContent = "Correct!"
-    scoreCounter++
-    //countScore();
 }
 function wrongAnswer(){
     result.textContent = "Wrong!"
     secondsLeft -= 5; 
 }
-// function countScore() {
-//     score.textContent = scoreCounter;
-//     localStorage.setItem("scoreCount", scoreCounter);
-// }
+
 // function getScore(){
 //     var storedPoints = localStorage.getItem("scoreCount")
 //     if(storedPoints === null) {
@@ -390,9 +382,3 @@ function storeUserInfo(){
     submitScore()
 }
 } 
-// function init() {
-//     getScore();
-//     getInitials();
-// }
-
-// init();
