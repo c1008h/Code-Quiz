@@ -11,7 +11,7 @@ var questionare = [
     {
         question: "The condition in an if / else statement is enclosed within ____.",
         answers: ["a. quotes", "b. curly brackets", "c. parenthesis", "d. square brackets"],
-        correctAnswer: "b. square brackets"
+        correctAnswer: "b. curly brackets"
     },
     {
         question: "Arrays in JavaScript can be used to store ____.",
@@ -59,15 +59,21 @@ function startGame() {
         }
 
         choicesEl.addEventListener('click', function(event){
-            if(questionare[0].questions.value = questionare.correctAnswer) {
+            console.log(event.target)
+            if(event.target.id == questionare[0].correctAnswer) {
+                console.log("c. alerts")
                 correctA()
+
                 function removeChildElement(){
-                    const parent = document.getElementById('choicesEl')
-                    while(parent.firstChild) {
-                        parent.firstChild.remove()
+                
+                    while(choicesEl.firstChild) {
+                        choicesEl.firstChild.remove()
                     }
                 }
+                removeChildElement()
                 question2()
+            } else {
+                wrongAnswer();
             }
             
         })
@@ -76,61 +82,130 @@ function startGame() {
     question1();
 
     function question2(){
-        displayQuestion.textContent = questionare[0].question
-        result.textContent = ''
+        displayQuestion.textContent = questionare[1].question
 
         for(i = 0; i < questionare[1].answers.length; i++){
             var answer = document.createElement('button')
             answer.setAttribute('class', 'list-group-item list-group-item-action')
            
             answer.setAttribute('id', questionare[1].answers[i])
-            //console.log(questionare[1].answers[i])
             answer.textContent = questionare[1].answers[i]
+            choicesEl.appendChild(answer)
         }
+        choicesEl.addEventListener('click', function(event){
+            console.log(event.target)
+            if(event.target.id == questionare[1].correctAnswer) {
+                correctA()
+
+                function removeChildElement(){
+                
+                    while(choicesEl.firstChild) {
+                        choicesEl.firstChild.remove()
+                    }
+                }
+                removeChildElement()
+                question3()
+            } else {
+                wrongAnswer();
+            }
+        })
         
     }
-    
 
-    // function question3(){
-    //     displayQuestion.textContent = questionare[2].question
+    function question3(){
+        displayQuestion.textContent = questionare[2].question
 
-    //     for(i = 0; i < quesitonaire[2].answers.length; i++){
-    //         var answer = document.createElement('button')
-    //         answer.setAttribute('class', 'list-group-item list-group-item-action')
-            // answer.setAttribute('id', questionare[2].answers[i])
-    //         
-    //         answer.textContent = questionare[2].answers[i]
-    //         choicesEl.appendChild(answer)
-    //     }
+        for(i = 0; i < questionare[2].answers.length; i++){
+            var answer = document.createElement('button')
+            answer.setAttribute('class', 'list-group-item list-group-item-action')
+            answer.setAttribute('id', questionare[2].answers[i])
+            answer.textContent = questionare[2].answers[i]
+            choicesEl.appendChild(answer)
+        }
+
+        choicesEl.addEventListener('click', function(event){
+            console.log(event.target)
+            if(event.target.id == questionare[2].correctAnswer) {
+                correctA()
+
+                function removeChildElement(){
+                
+                    while(choicesEl.firstChild) {
+                        choicesEl.firstChild.remove()
+                    }
+                }
+                removeChildElement()
+                question4()
+            } else {
+                wrongAnswer();
+            }
+            
+        })
         
-    // }
+    }
 
-    // function question4(){
-    //     displayQuestion.textContent = questionare[3].question
+    function question4(){
+        displayQuestion.textContent = questionare[3].question
 
-    //     for(i = 0; i < myAnswers[3].length; i++){
-    //         var answer = document.createElement('button')
-    //         answer.setAttribute('class', 'list-group-item list-group-item-action')
-    // answer.setAttribute('id', questionare[3].answers[i])
-    //        
-    //         answer.textContent = questionare[3].answers[i]
-    //         choicesEl.appendChild(answer)
-    //     }
+        for(i = 0; i < questionare[3].answers.length; i++){
+            var answer = document.createElement('button')
+            answer.setAttribute('class', 'list-group-item list-group-item-action')
+            answer.setAttribute('id', questionare[3].answers[i])
+           
+            answer.textContent = questionare[3].answers[i]
+            choicesEl.appendChild(answer)
+        }
+        choicesEl.addEventListener('click', function(event){
+            console.log(event.target)
+            if(event.target.id == questionare[3].correctAnswer) {
+                correctA()
+
+                function removeChildElement(){
+                
+                    while(choicesEl.firstChild) {
+                        choicesEl.firstChild.remove()
+                    }
+                }
+                removeChildElement()
+                question5()
+            } else {
+                wrongAnswer();
+            }
+            
+        })
         
-    // }
+    }
 
-    // function question5(){
-    //     displayQuestion.textContent = questionare[4].question
+    function question5(){
+        displayQuestion.textContent = questionare[4].question
 
-    //     for(i = 0; i < questionare[4]answers.length; i++){
-    //         var answer = document.createElement('button')
-    //         answer.setAttribute('class', 'list-group-item list-group-item-action')
-             //answer.setAttribute('id', questionare[4].answers[i])
-    //         answer.textContent = questionare[4].answers[i]
-    //         choicesEl.appendChild(answer)
-    //     }
+        for(i = 0; i < questionare[4].answers.length; i++){
+            var answer = document.createElement('button')
+            answer.setAttribute('class', 'list-group-item list-group-item-action')
+             answer.setAttribute('id', questionare[4].answers[i])
+            answer.textContent = questionare[4].answers[i]
+            choicesEl.appendChild(answer)
+        }
+        choicesEl.addEventListener('click', function(event){
+            console.log(event.target)
+            if(event.target.id == questionare[4].correctAnswer) {
+                correctA()
+
+                function removeChildElement(){
+                
+                    while(choicesEl.firstChild) {
+                        choicesEl.firstChild.remove()
+                    }
+                }
+                removeChildElement()
+                question5()
+            } else {
+                wrongAnswer();
+            }
+            
+        })
         
-    // }
+    }
 
 }
 
