@@ -14,8 +14,8 @@
     <body>
         <div id="container">
             <div class="row">
-                <div class="col-6" id="View_Highscores">View HighScores</div>
-                <div class="col-6">Time left: <span id="timer-count"></span></div>
+                <div class="col-12 col-md-6" id="View_Highscores">View HighScores</div>
+                <div class="col-12 col-md-6">Time left: <span id="timer-count"></span></div>
             </div>
           </div>
 
@@ -29,14 +29,22 @@
           <div class="col-6 align-items-center" id="quiz-container">
             <div class="question-container"></div>
               <h2 id="question"></h2>
-              <ol id="choices"></ol>
+              <ol id="choices1"></ol>
+              <ol id="choices2"></ol>
+              <ol id="choices3"></ol>
+              <ol id="choices4"></ol>
+              <ol id="choices5"></ol>
             </div>
             <div class="" id="display-results"></div>
           </div>
 
-          <div class="col-6 align-items-center" id="endscreen"></div>
+          <div class="col-6 align-items-center" id="endscreen">
+            <h3 id="allDone"></h3>
+            <h5 id="final-score-is"><span id="score-result"></span></h5>
+          </div>
+          <div class="col-6 align-items-center" id="loser"></div>
 
-          <div id="highscore"></div>
+          <div class="container" id="highscore"></div>
         </main>
     
     <script src="./assets/js/script.js"></script>
