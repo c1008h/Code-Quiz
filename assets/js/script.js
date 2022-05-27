@@ -29,14 +29,17 @@ var startScreen = document.querySelector('#startscreen');
 var startButton = document.querySelector('#start-button')
 var gameScreen = document.querySelector('#quiz-container')
 var displayQuestion = document.querySelector('#question');
-var choicesEl = document.querySelector('#choices')
+var choices1El = document.querySelector('#choices1')
+var choices2El = document.querySelector('#choices2')
+var choices3El = document.querySelector('#choices3')
+var choices4El = document.querySelector('#choices4')
+var choices5El = document.querySelector('#choices5')
 var result = document.querySelector('#display-results')
-
+var loserLol = document.querySelector('#loser')
 var viewHigh = document.querySelector('#View_Highscores')
 var endScreen = document.querySelector('#endscreen')
 var highScorePage = document.querySelector('#highscore')
 var clickHighScores = document.querySelector('.clickHigh')
-
 var timeEl = document.querySelector('#timer-count');
 var secondsLeft = 60; // Seconds Left on timer
 var progress = 0
@@ -46,7 +49,6 @@ startButton.addEventListener('click', startGame)
 function startGame() {
     setTime();
     startScreen.remove()
-    
     function question1() {
         displayQuestion.textContent = questionare[0].question
 
@@ -55,19 +57,19 @@ function startGame() {
             answer.setAttribute('class', 'list-group-item list-group-item-action')
             answer.setAttribute('id', questionare[0].answers[i])
             answer.textContent = questionare[0].answers[i]
-            choicesEl.appendChild(answer)
+            choices1El.appendChild(answer)
         }
 
-        choicesEl.addEventListener('click', function(event){
+        choices1El.addEventListener('click', function(event){
+        
             console.log(event.target)
-            if(event.target.id == questionare[0].correctAnswer) {
+            if(event.target.id == questionare[0].correctAnswer && secondsLeft > 0) {
                 console.log("c. alerts")
                 correctA()
 
                 function removeChildElement(){
-                
-                    while(choicesEl.firstChild) {
-                        choicesEl.firstChild.remove()
+                    while(choices1El.firstChild) {
+                        choices1El.firstChild.remove()
                     }
                 }
                 removeChildElement()
@@ -88,17 +90,16 @@ function startGame() {
            
             answer.setAttribute('id', questionare[1].answers[i])
             answer.textContent = questionare[1].answers[i]
-            choicesEl.appendChild(answer)
+            choices2El.appendChild(answer)
         }
-        choicesEl.addEventListener('click', function(event){
+        choices2El.addEventListener('click', function(event){
             console.log(event.target)
-            if(event.target.id == questionare[1].correctAnswer) {
+            if(event.target.id == questionare[1].correctAnswer && secondsLeft > 0) {
                 correctA()
 
                 function removeChildElement(){
-                
-                    while(choicesEl.firstChild) {
-                        choicesEl.firstChild.remove()
+                    while(choices2El.firstChild) {
+                        choices2El.firstChild.remove()
                     }
                 }
                 removeChildElement()
@@ -117,18 +118,17 @@ function startGame() {
             answer.setAttribute('class', 'list-group-item list-group-item-action')
             answer.setAttribute('id', questionare[2].answers[i])
             answer.textContent = questionare[2].answers[i]
-            choicesEl.appendChild(answer)
+            choices3El.appendChild(answer)
         }
 
-        choicesEl.addEventListener('click', function(event){
+        choices3El.addEventListener('click', function(event){
             console.log(event.target)
-            if(event.target.id == questionare[2].correctAnswer) {
+            if(event.target.id == questionare[2].correctAnswer && secondsLeft > 0) {
                 correctA()
 
                 function removeChildElement(){
-                
-                    while(choicesEl.firstChild) {
-                        choicesEl.firstChild.remove()
+                    while(choices3El.firstChild) {
+                        choices3El.firstChild.remove()
                     }
                 }
                 removeChildElement()
@@ -148,17 +148,16 @@ function startGame() {
             answer.setAttribute('id', questionare[3].answers[i])
            
             answer.textContent = questionare[3].answers[i]
-            choicesEl.appendChild(answer)
+            choices4El.appendChild(answer)
         }
-        choicesEl.addEventListener('click', function(event){
+        choices4El.addEventListener('click', function(event){
             console.log(event.target)
-            if(event.target.id == questionare[3].correctAnswer) {
+            if(event.target.id == questionare[3].correctAnswer && secondsLeft > 0) {
                 correctA()
 
                 function removeChildElement(){
-                
-                    while(choicesEl.firstChild) {
-                        choicesEl.firstChild.remove()
+                    while(choices4El.firstChild) {
+                        choices4El.firstChild.remove()
                     }
                 }
                 removeChildElement()
@@ -177,21 +176,19 @@ function startGame() {
             answer.setAttribute('class', 'list-group-item list-group-item-action')
              answer.setAttribute('id', questionare[4].answers[i])
             answer.textContent = questionare[4].answers[i]
-            choicesEl.appendChild(answer)
+            choices5El.appendChild(answer)
         }
-        choicesEl.addEventListener('click', function(event){
+        choices5El.addEventListener('click', function(event){
             console.log(event.target)
-            if(event.target.id == questionare[4].correctAnswer) {
+            if(event.target.id == questionare[4].correctAnswer && secondsLeft > 0) {
                 correctA()
 
                 function removeChildElement(){
-                
-                    while(choicesEl.firstChild) {
-                        choicesEl.firstChild.remove()
+                    while(choices5El.firstChild) {
+                        choices5El.firstChild.remove()
                     }
                 }
                 removeChildElement()
-                
             } else {
                 wrongAnswer();
             }
@@ -237,10 +234,13 @@ function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft + " second(s) left.";
-
-        if(secondsLeft === 0 || progress == 5) {
+        if(progress == 5){
             clearInterval(timerInterval);
             endScreenDisplay();
+        }
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            loser()
         }
     }, 1000);
 }
@@ -255,6 +255,21 @@ function submitInitial() {
             localStorage.setItem(initials, score)
             highScoreDisplay()
         }
+}
+function loser() {
+    gameScreen.remove()
+    var h2Lol = document.createElement('h2')
+    h2Lol.textContent = "You lost! :P"
+    var playAgainBtn = document.createElement('button')
+    playAgainBtn.textContent = "Play Again"
+    playAgainBtn.setAttribute('type', 'button')
+    playAgainBtn.setAttribute('class', 'btn btn-secondary')
+
+    loserLol.appendChild(h2Lol)
+    loserLol.appendChild(playAgainBtn)
+
+    playAgainBtn.addEventListener('click', window.location.reload.bind(window.location))
+
 }
 
 function highScoreDisplay() {
@@ -272,26 +287,34 @@ function highScoreDisplay() {
     headInitials.textContent = 'Initials: '
     
     highScorePage.appendChild(tableEl)
-    highScorePage.appendChild(theadEl)
-    highScorePage.appendChild(trEl)
-    highScorePage.appendChild(headInitials)
-    highScorePage.appendChild(headScore)
+    tableEl.appendChild(theadEl)
+    theadEl.appendChild(trEl)
+    theadEl.appendChild(headInitials)
+    theadEl.appendChild(headScore)
 
     var tbodyEl = document.createElement('tbody')
 
+    tableEl.appendChild(tbodyEl)
+
     for(i = 0; i < localStorage.length; i++) {
-        console.log(localStorage.getItem(localStorage.key(i)))
         var trBodyEl = document.createElement('tr')
+        tbodyEl.appendChild(trBodyEl)
+
         var tdInitials = document.createElement('td')
         var tdScore = document.createElement('td')
-        
-        //localStorage.getItem(initials).value = tdInitials[i].textContent
-        //tdInitials.textContent = localStorage.getItem(initials)
-        //tdScore.textContent = localStorage.getItem(score)
 
-        tbodyEl.appendChild(trBodyEl)
-        tdInitials.appendChild(tbodyEl)
-        tdScore.appendChild(tbodyEl)
+        tdScore.textContent = localStorage.getItem(localStorage.key(i))
+        tdInitials.textContent = localStorage.key(i)
 
+        trBodyEl.appendChild(tdInitials)
+        trBodyEl.appendChild(tdScore)
     }
+
+    var replayButton = document.createElement('button')
+    replayButton.textContent = 'Replay'
+    replayButton.setAttribute('type', 'button')
+    replayButton.setAttribute('class', 'btn btn-secondary')
+    highScorePage.appendChild(replayButton)
+
+    replayButton.addEventListener('click', window.location.reload.bind(window.location))
 }
