@@ -1,6 +1,7 @@
 # Code-Quiz
 
-![image](https://user-images.githubusercontent.com/102135325/170810372-207f3dc8-848a-4a39-b8cd-cddfdc68a9af.png)
+![Code-Quiz-Demo](https://user-images.githubusercontent.com/102135325/170810387-5e612516-5be4-460d-8e20-b358cb6070a2.gif)
+
 
 ## Project Description
 This code-quiz is a perfect way to test your knowledge on coding. Traditional studying methods eventually becomes so boring. Therefore, this code-quiz game was created to keep users engaged while they study. Motivation will make users mot engaged in their studying and studying will be more fun. 
