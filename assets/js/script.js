@@ -36,10 +36,10 @@ var choices4El = document.querySelector('#choices4')
 var choices5El = document.querySelector('#choices5')
 var result = document.querySelector('#display-results')
 var loserLol = document.querySelector('#loser')
-var viewHigh = document.querySelector('#View_Highscores')
+var viewScoreBoard = document.querySelector('#View_Highscores')
 var endScreen = document.querySelector('#endscreen')
 var highScorePage = document.querySelector('#highscore')
-var clickHighScores = document.querySelector('.clickHigh')
+var viewScoreBtn = document.querySelector('#viewscorebtn')
 var timeEl = document.querySelector('#timer-count');
 var secondsLeft = 60; // Seconds Left on timer
 var progress = 0
@@ -317,4 +317,74 @@ function highScoreDisplay() {
     highScorePage.appendChild(replayButton)
 
     replayButton.addEventListener('click', window.location.reload.bind(window.location))
+}
+
+viewScoreBtn.addEventListener('click', function(event){
+    console.log(event.target)
+    viewHighScoreBtnDisplay()
+})
+
+function viewHighScoreBtnDisplay() {
+    var divModalContent = document.createElement('div')
+    var divModalHeader = document.createElement('div')
+    var modalTitle = document.createElement('h4')
+    var modalBody = document.createElement('div')
+    var modalFooter = document.createElement('div')
+    var modalCloseBtn = document.createElement('button')
+
+    modalCloseBtn.setAttribute('id', 'modalClose')
+    divModalContent.setAttribute('class', 'modal-content')
+    divModalContent.setAttribute('id', 'divModal-Content')
+    divModalHeader.setAttribute('class', 'modal-header')
+    modalTitle.setAttribute('class', 'modal-title')
+    modalCloseBtn.setAttribute('type', 'button')
+    modalCloseBtn.setAttribute('class', 'btn btn-default')
+    modalCloseBtn.setAttribute('data-dismiss', 'modal')
+    modalCloseBtn.textContent = 'Close'
+    modalTitle.textContent = 'Highscore board'
+
+    var table = document.createElement('table')
+    var thead = document.createElement('thead')
+    var tr = document.createElement('tr')
+    tr.setAttribute('class', 'col-12')
+    var headScore1 = document.createElement('th')
+    var headInitials1 = document.createElement('th')
+    headScore1.setAttribute('scope', 'col')
+    headInitials1.setAttribute('scope', 'col')
+    headScore1.textContent = 'Score: '
+    headInitials1.textContent = 'Initials: '
+    
+    modalBody.appendChild(table)
+    table.appendChild(thead)
+    thead.appendChild(tr)
+    thead.appendChild(headInitials1)
+    thead.appendChild(headScore1)
+
+    var tbody = document.createElement('tbody')
+    table.appendChild(tbody)
+
+    for(i = 0; i < localStorage.length; i++) {
+        var trBody = document.createElement('tr')
+        tbody.appendChild(trBody)
+
+        var tdInitials1 = document.createElement('td')
+        var tdScore1 = document.createElement('td')
+
+        tdScore1.textContent = localStorage.getItem(localStorage.key(i))
+        tdInitials1.textContent = localStorage.key(i)
+
+        trBody.appendChild(tdInitials1)
+        trBody.appendChild(tdScore1)
+    }
+
+    viewScoreBoard.appendChild(divModalContent)
+    divModalContent.appendChild(divModalHeader)
+    divModalHeader.appendChild(modalTitle)
+    divModalContent.appendChild(modalBody)
+    divModalContent.appendChild(modalFooter)
+    modalFooter.appendChild(modalCloseBtn)
+
+    document.getElementById('modalClose').addEventListener('click', function(event) {
+        document.getElementById('divModal-Content').remove()
+    })
 }
